@@ -7,6 +7,7 @@ engine = create_engine('sqlite://',
                     connect_args = {'check_same_thread': False},
                     poolclass = sqlalchemy.pool.StaticPool)
 
+
 def get_db():
     return engine
 
