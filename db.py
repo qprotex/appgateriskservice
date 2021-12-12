@@ -1,7 +1,6 @@
 import sqlalchemy.pool
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base
-# from flask import current_app
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import sessionmaker
 from werkzeug.security import generate_password_hash
@@ -24,7 +23,6 @@ class User(Base):
     password = Column(String)
 
 
-
 class LogData(Base):
     __tablename__ = 'logdata'
     id = Column(Integer, primary_key=True)
@@ -32,7 +30,9 @@ class LogData(Base):
     username = Column(String)
     ip = Column(String)
     fingerPrint = Column(String)
-    createdDate = Column(String)
+    loginStatus = Column(Integer)
+    logDate = Column(Integer)
+    createdDate = Column(Integer)
 
 
 class CompanyNetwork(Base):
@@ -55,13 +55,13 @@ class UserClient(Base):
 
 def get_db_session():
     return session
-    #return engine
 
 
 def init_db():
     Base.metadata.create_all(engine)
 
-    user = User(username='UserA', password=generate_password_hash('1234', method='sha256'))
+    user = User(username='UserA',
+                password=generate_password_hash('1234', method='sha256'))
     session.add(user)
 
     userip = UserIP(ip='10.97.2.10')
@@ -73,16 +73,15 @@ def init_db():
     cn = CompanyNetwork(range='10.97.2.0/24')
     session.add(cn)
 
-    cn = LogData(source='Computer', username='UserA', ip='10.97.2.10', fingerPrint='DefaultFingerPrint',
-                 createdDate=datetime.now().timestamp())
-    session.add(cn)
+    # cn = LogData(source='Computer',
+    #              username='UserA',
+    #              ip='10.97.2.10',
+    #              fingerPrint='DefaultFingerPrint',
+    #              logDate=datetime(2020, 12, 1, 0, 0).timestamp(),
+    #              createdDate=datetime.now().timestamp())
+    # session.add(cn)
 
     session.commit()
-    # with engine.connect() as c:
-    #     with current_app.open_resource('schema.sql') as f:
-    #         lines = f.readlines()
-    #         for line in lines:
-    #             c.execute(line.decode('utf8'))
 
 
 def init_app(app):
