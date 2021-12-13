@@ -1,0 +1,26 @@
+[
+    {
+        "source": "ssh",
+        "fingerPrint": "12:f8:7e:78:61:b4:bf:e2:de:24:15:96:4e:d4:72:53",
+        "message": "Accepted password for UserA from 10.97.2.10 port 49116 ssh2",
+        "logDate": "2021-12-10"
+    },
+    {
+        "source": "ssh",
+        "fingerPrint": "12:f8:7e:78:61:b4:bf:e2:de:24:15:96:4e:d4:72:53",
+        "message": "Failed password for invalid user Miguel from 10.97.2.15 port 32484 ssh2",
+        "logDate": "2021-11-29"
+    },
+    {
+        "source": "ssh",
+        "fingerPrint": "12:f8:7e:78:61:b4:bf:e2:de:24:15:96:4e:d4:72:53",
+        "message": "Failed password for invalid user Miguel from 10.97.2.15 port 32484 ssh2",
+        "logDate": "2021-12-04"
+    },
+    {
+        "source": "ssh",
+        "fingerPrint": "12:f8:7e:78:61:b4:bf:e2:de:24:15:96:4e:d4:72:53",
+        "message": "Failed password for invalid user Miguel from 10.97.2.15 port 32484 ssh2",
+        "logDate": "2021-12-06"
+    }
+]

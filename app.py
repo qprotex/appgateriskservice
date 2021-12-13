@@ -87,8 +87,7 @@ def risk_failedlogincountlastweek():
 
 @app.route('/log', methods=['POST'])
 def parse_log():
-    lp = AppGateLog(request.get_json(), cache)
-    lp.start()
+    rs.parse_log(request.get_json())
     return {
         "response": "Log received and will be processed"
     }

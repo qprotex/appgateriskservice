@@ -3,6 +3,7 @@ import ipaddress
 
 from db import LogData, CompanyNetwork, UserIP, UserClient
 from db import get_db_session
+from services.appgatelog import AppGateLog
 
 
 class RiskService:
@@ -114,3 +115,7 @@ class RiskService:
 
             self.cache.set("stats", {current_week: {'failedlogincountlastweek': c}})
             return c
+
+    def parse_log(self, log):
+        lp = AppGateLog(log, self.cache)
+        lp.start()
