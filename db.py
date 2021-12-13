@@ -60,9 +60,9 @@ def get_db_session():
 def init_db():
     Base.metadata.create_all(engine)
 
-    user = User(username='UserA',
-                password=generate_password_hash('1234', method='sha256'))
-    session.add(user)
+    # user = User(username='UserA',
+    #             password=generate_password_hash('1234', method='sha256'))
+    # session.add(user)
 
     userip = UserIP(ip='10.97.2.10')
     session.add(userip)

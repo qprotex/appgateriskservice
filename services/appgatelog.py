@@ -18,7 +18,7 @@ class AppGateLog(threading.Thread):
 
         cache_ips = self.cache.get("ips") if self.cache.get("ips") else []
         cache_clients = self.cache.get("clients") if self.cache.get("clients") else []
-        cache_usernames = self.cache.get("usernames") if self.cache.get("usernames") else []
+        cache_usernames = self.cache.get("usernames") if self.cache.get("usernames") else {}
 
         # save data
         session = get_db_session()
@@ -45,22 +45,30 @@ class AppGateLog(threading.Thread):
                          )
             session.add(ld)
 
-
             # update db and cache
-            if parsed_data['username'] not in cache_usernames:
-                cache_usernames.append(parsed_data['username'])
-                self.cache.set("username", cache_usernames)
+            if parsed_data['username'] not in cache_usernames.keys():
+                if parsed_data['loginStatus'] == 1:
+                    cache_usernames[parsed_data['username']] = {"lastsuccessfullogindate": log_date, 'lastfailedlogindate': None}
+                else:
+                    cache_usernames[parsed_data['username']] = {"lastsuccessfullogindate": None, 'lastfailedlogindate': log_date}
+            else:
+                if parsed_data['loginStatus'] == 1:
+                    cache_usernames[parsed_data['username']]["lastsuccessfullogindate"] = log_date
+                else:
+                    cache_usernames[parsed_data['username']]["lastfailedlogindate"] = log_date
 
             if parsed_data['ip'] not in cache_ips:
                 up = UserIP(ip=parsed_data['ip'])
                 session.add(up)
                 cache_ips.append(parsed_data['ip'])
-                self.cache.set("ips", cache_ips)
 
             if entry['fingerPrint'] not in cache_clients:
                 up = UserClient(fingerPrint=entry['fingerPrint'])
                 session.add(up)
                 cache_clients.append(entry['fingerPrint'])
-                self.cache.set("clients", cache_clients)
+
+        self.cache.set("usernames", cache_usernames)
+        self.cache.set("clients", cache_clients)
+        self.cache.set("ips", cache_ips)
 
         session.commit()
