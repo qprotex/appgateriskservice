@@ -3,7 +3,7 @@ import threading
 
 from db import LogData, UserIP, UserClient
 from db import get_db_session
-from services.logparser import LogParser, ssh_parser
+from logparsing.logparser import LogParser, ssh_parser
 
 
 class AppGateLog(threading.Thread):

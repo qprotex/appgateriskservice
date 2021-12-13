@@ -8,7 +8,6 @@ from flask_caching import Cache
 import db
 from db import LogData
 from db import get_db_session
-from services.appgatelog import AppGateLog
 from services.riskservice import RiskService
 
 cache = Cache(config={'CACHE_TYPE': 'SimpleCache'})

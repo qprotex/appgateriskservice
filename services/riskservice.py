@@ -3,7 +3,7 @@ import ipaddress
 
 from db import LogData, CompanyNetwork, UserIP, UserClient
 from db import get_db_session
-from services.appgatelog import AppGateLog
+from logparsing.appgatelog import AppGateLog
 
 
 class RiskService:
@@ -72,7 +72,6 @@ class RiskService:
         usernames = self.cache.get("usernames")
 
         if not usernames:
-            usernames = []
             session = get_db_session()
             lastsuccessfullogindate = session.query(LogData.logDate).filter_by(username=username,
                                                                                loginStatus=1).order_by(
@@ -82,14 +81,13 @@ class RiskService:
                 lastsuccessfullogindate) if lastsuccessfullogindate else 'Not known'
         else:
             return datetime.datetime.fromtimestamp(usernames[username]['lastsuccessfullogindate']) if \
-            usernames[username]['lastsuccessfullogindate'] else 'Not known'
+                usernames[username]['lastsuccessfullogindate'] else 'Not known'
 
     def risk_lastfailedlogindate(self, username):
         username = username.lower()
         usernames = self.cache.get("usernames")
 
         if not usernames:
-            usernames = []
             session = get_db_session()
             lastfailedlogindate = session.query(LogData.logDate).filter_by(username=username, loginStatus=0).order_by(
                 LogData.logDate.desc()).first()

@@ -1,13 +1,13 @@
 import sqlalchemy.pool
+from sqlalchemy import Column, Integer, String
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import sessionmaker
 
 Base = declarative_base()
 engine = create_engine('sqlite://',
-                    connect_args = {'check_same_thread': False},
-                    poolclass = sqlalchemy.pool.StaticPool)
+                       connect_args={'check_same_thread': False},
+                       poolclass=sqlalchemy.pool.StaticPool)
 
 Session = sessionmaker()
 Session.configure(bind=engine)
