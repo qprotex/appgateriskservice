@@ -1,0 +1,354 @@
+{
+	"info": {
+		"_postman_id": "91b09f3c-39a8-4d1c-aa1b-5b72db880613",
+		"name": "Appgate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "logdata",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNjM5MzUwNTI1fQ.kyB_SxWPX9kQolNmsU09VUxPsKq0aO62Md6ljsEY3lg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/logdata",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"logdata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "log",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"source\": \"ssh\",\r\n        \"fingerPrint\": \"12:f8:7e:78:61:b4:bf:e2:de:24:15:96:4e:d4:72:53\",\r\n        \"message\": \"Accepted password for UserA from 10.97.2.10 port 49116 ssh2\",\r\n        \"logDate\": \"2021-12-10\"\r\n    },\r\n    {\r\n        \"source\": \"ssh\",\r\n        \"fingerPrint\": \"12:f8:7e:78:61:b4:bf:e2:de:24:15:96:4e:d4:72:53\",\r\n        \"message\": \"Failed password for invalid user Miguel from 10.97.2.15 port 32484 ssh2\",\r\n        \"logDate\": \"2021-11-29\"\r\n    },\r\n    {\r\n        \"source\": \"ssh\",\r\n        \"fingerPrint\": \"12:f8:7e:78:61:b4:bf:e2:de:24:15:96:4e:d4:72:53\",\r\n        \"message\": \"Failed password for invalid user Miguel from 10.97.2.15 port 32484 ssh2\",\r\n        \"logDate\": \"2021-12-04\"\r\n    },\r\n    {\r\n        \"source\": \"ssh\",\r\n        \"fingerPrint\": \"12:f8:7e:78:61:b4:bf:e2:de:24:15:96:4e:d4:72:53\",\r\n        \"message\": \"Failed password for invalid user Miguel from 10.97.2.15 port 32484 ssh2\",\r\n        \"logDate\": \"2021-12-06\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/log",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"log"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "isuserknown",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Custom User Agent",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/risk/isuserknown?username=UserB",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"risk",
+						"isuserknown"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Miguel",
+							"disabled": true
+						},
+						{
+							"key": "username",
+							"value": "UserA",
+							"disabled": true
+						},
+						{
+							"key": "username",
+							"value": "UserB"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "isclientknown",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Custom User Agent",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/risk/isclientknown",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"risk",
+						"isclientknown"
+					],
+					"query": [
+						{
+							"key": "client",
+							"value": "12:f8:7e:78:61:b4:bf:e2:de:24:15:96:4e:d4:72:53",
+							"disabled": true
+						},
+						{
+							"key": "client",
+							"value": "PostmanRuntime/7.28.4",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "isipknown",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Custom User Agent",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/risk/isipknown?ip=10.97.2.50",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"risk",
+						"isipknown"
+					],
+					"query": [
+						{
+							"key": "ip",
+							"value": "10.97.2.10",
+							"disabled": true
+						},
+						{
+							"key": "ip",
+							"value": "10.97.2.50"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "isipinternal",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Custom User Agent",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/risk/isipinternal?ip=10.97.3.23",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"risk",
+						"isipinternal"
+					],
+					"query": [
+						{
+							"key": "ip",
+							"value": "10.97.2.23",
+							"disabled": true
+						},
+						{
+							"key": "ip",
+							"value": "10.97.3.23"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lastsuccessfullogindate",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Custom User Agent",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/risk/lastsuccessfullogindate?username=UserA",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"risk",
+						"lastsuccessfullogindate"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Miguel",
+							"disabled": true
+						},
+						{
+							"key": "username",
+							"value": "UserA"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lastfailedlogindate",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Custom User Agent",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/risk/lastfailedlogindate?username=Miguel",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"risk",
+						"lastfailedlogindate"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Miguel"
+						},
+						{
+							"key": "username",
+							"value": "UserA",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "failedlogincountlastweek",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Custom User Agent",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/risk/failedlogincountlastweek",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"risk",
+						"failedlogincountlastweek"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
