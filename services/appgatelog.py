@@ -1,7 +1,7 @@
 import datetime
 import threading
 
-from db import LogData, User, UserIP, UserClient
+from db import LogData, UserIP, UserClient
 from db import get_db_session
 from services.logparser import LogParser, ssh_parser
 
